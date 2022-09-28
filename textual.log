@@ -1,0 +1,32 @@
+---
+driver=<class 'textual.drivers.linux_driver.LinuxDriver'>
+Load() >>> Browser(title='Textual')
+Mount() >>> Browser(title='uproot-browser')
+Mount() >>> DockView(name='DockView#1')
+Mount() >>> Header('')
+Mount() >>> ScrollView(name='ScrollView#1')
+Mount() >>> ScrollView(name='ScrollView#1')
+Mount() >>> WindowView(name='WindowView#1')
+Mount() >>> TreeView(name='1271C3DF-0D15-E711-91E1-FA163E64F8D3.root')
+TRANSLATING layout
+WindowChange(WindowView(name='WindowView#1')) >>> ScrollView(name='ScrollView#1')
+WindowChange(WindowView(name='WindowView#1')) >>> ScrollView(name='ScrollView#1')
+view.forwarded Key(key='down')
+Key(key='down') >>> Browser(title='uproot-browser')
+view.forwarded Key(key='down')
+Key(key='down') >>> Browser(title='uproot-browser')
+view.forwarded Key(key='down')
+Key(key='down') >>> Browser(title='uproot-browser')
+view.forwarded Key(key='q')
+Key(key='q') >>> Browser(title='uproot-browser')
+ACTION Browser(title='uproot-browser') quit
+CLOSED Browser(title='uproot-browser')
+PROCESS END
+CLOSED ScrollBar(virtual_size=48, window_size=48, position=0)
+CLOSED WindowView(name='WindowView#1')
+CLOSED ScrollView(name='ScrollView#1')
+CLOSED DockView(name='DockView#1')
+CLOSED ScrollBar(virtual_size=109, window_size=109, position=0)
+CLOSED Footer(keys=[])
+CLOSED PlotWidget(name='PlotWidget#1')
+CLOSED Header('uproot-browser')
