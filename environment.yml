@@ -1,0 +1,9 @@
+name: phys549
+channels:
+  - conda-forge
+dependencies:
+  - tensorflow
+  - scikit-learn
+  - uproot
+  - awkward
+  - matplotlib
