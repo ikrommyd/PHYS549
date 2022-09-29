@@ -3,7 +3,7 @@
 
 This repository is a shared workspace for the PHYS 549 group project.
 The goal of this project is to classify jets as originating from Higgs to bb decay or as originating from QCD multijet production.\
-The dataset is from http://opendata.cern.ch/record/12102([DOI:10.7483/OPENDATA.CMS.JGJX.MS7Q](http://doi.org/10.7483/OPENDATA.CMS.JGJX.MS7Q)).
+The dataset is from http://opendata.cern.ch/record/12102 ([DOI:10.7483/OPENDATA.CMS.JGJX.MS7Q](http://doi.org/10.7483/OPENDATA.CMS.JGJX.MS7Q)).
 
 A very basic model is so far implemented in the `train.ipynb` notebook.\
 This model is a very simple multilayer perceptron that trains on one `.root` file and tests on another.
