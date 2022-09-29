@@ -20,6 +20,7 @@ conda activate phys549
 ```
 To run the notebook you also need tha data `.root` files inside a folder called `root_files`.\
 We provide index `.txt` files with links to download the data.
+WARNING: The files are roughly 100 GB so make sure you have enough space and time.\
 To download all of the `.root` files with `wget`, just do
 ```
 cd root_files
@@ -32,7 +33,6 @@ cd root_files
 xrdcp -I HiggsToBBNTuple_HiggsToBB_QCD_RunII_13TeV_MC_test_root_file_index_xrdcp.txt
 xrdcp -I HiggsToBBNTuple_HiggsToBB_QCD_RunII_13TeV_MC_train_root_file_index_xrdcp.txt
 ```
-WARNING: The files are roughly 100 GB so make sure you have enough space and time.\
 You can also download individual `.root` files instead of all of them by using specific links within the `.txt` files.\
 For instance:
 ```
