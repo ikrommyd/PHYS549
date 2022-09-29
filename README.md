@@ -19,7 +19,7 @@ You can then activate the environment by running
 conda activate phys549
 ```
 To run the notebook you also need tha data `.root` files inside a folder called `root_files`.\
-We provide index `.txt` files with links to download the data.
+We provide index `.txt` files with links to download the data.\
 WARNING: The files are roughly 100 GB so make sure you have enough space and time.\
 To download all of the `.root` files with `wget`, just do
 ```
