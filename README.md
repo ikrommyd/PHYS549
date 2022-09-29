@@ -34,7 +34,7 @@ xrdcp -I HiggsToBBNTuple_HiggsToBB_QCD_RunII_13TeV_MC_train_root_file_index_xrdc
 ```
 WARNING: The files are roughly 100 GB so make sure you have enough space and time.\
 You can also download individual `.root` files instead of all of them by using specific links within the `.txt` files.\
-For intstance:
+For instance:
 ```
 cd root_files
 wget http://opendata.cern.ch/eos/opendata/cms/datascience/HiggsToBBNtupleProducerTool/HiggsToBBNTuple_HiggsToBB_QCD_RunII_13TeV_MC/test/ntuple_merged_0.root
