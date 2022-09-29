@@ -1,3 +1,4 @@
 root_files/*.root
 .ipynb_checkpoints/
 .DS_Store
+textual.log
