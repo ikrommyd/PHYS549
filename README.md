@@ -30,8 +30,8 @@ wget -i HiggsToBBNTuple_HiggsToBB_QCD_RunII_13TeV_MC_train_root_file_index_wget.
 or you can also use XRootD if you have it installed
 ```
 cd root_files
-xrdcp -I HiggsToBBNTuple_HiggsToBB_QCD_RunII_13TeV_MC_test_root_file_index_xrdcp.txt
-xrdcp -I HiggsToBBNTuple_HiggsToBB_QCD_RunII_13TeV_MC_train_root_file_index_xrdcp.txt
+xrdcp -I HiggsToBBNTuple_HiggsToBB_QCD_RunII_13TeV_MC_test_root_file_index_xrdcp.txt .
+xrdcp -I HiggsToBBNTuple_HiggsToBB_QCD_RunII_13TeV_MC_train_root_file_index_xrdcp.txt .
 ```
 You can also download individual `.root` files instead of all of them by using specific links within the `.txt` files.\
 For instance:
@@ -43,7 +43,7 @@ wget http://opendata.cern.ch/eos/opendata/cms/datascience/HiggsToBBNtupleProduce
 or
 ```
 cd root_files
-xrdcp root://eospublic.cern.ch//eos/opendata/cms/datascience/HiggsToBBNtupleProducerTool/HiggsToBBNTuple_HiggsToBB_QCD_RunII_13TeV_MC/test/ntuple_merged_0.root
-xrdcp root://eospublic.cern.ch//eos/opendata/cms/datascience/HiggsToBBNtupleProducerTool/HiggsToBBNTuple_HiggsToBB_QCD_RunII_13TeV_MC/test/ntuple_merged_10.root
+xrdcp root://eospublic.cern.ch//eos/opendata/cms/datascience/HiggsToBBNtupleProducerTool/HiggsToBBNTuple_HiggsToBB_QCD_RunII_13TeV_MC/test/ntuple_merged_0.root .
+xrdcp root://eospublic.cern.ch//eos/opendata/cms/datascience/HiggsToBBNtupleProducerTool/HiggsToBBNTuple_HiggsToBB_QCD_RunII_13TeV_MC/test/ntuple_merged_10.root .
 ```
 These are the two files that the notebook uses by default but you can use any other set of files or multiple files if you modify the code.
