@@ -13,7 +13,7 @@ After cloning the repository, just create an environment by running
 ```
 conda env create -f environment.yml
 ```
-If you don't have conda, you can get it at https://docs.conda.io/en/latest/miniconda.html.\
+If you don't have conda, you can get it at https://docs.conda.io/en/latest/miniconda.html. \
 You can then activate the environment by running 
 ```
 conda activate phys549
