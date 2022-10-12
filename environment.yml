@@ -8,6 +8,7 @@ dependencies:
   - uproot
   - awkward
   - matplotlib
+  - seaborn
   - pandas
   - scipy
   - tqdm
