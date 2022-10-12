@@ -6,33 +6,33 @@ import awkward as ak
 from tqdm import tqdm
 
 def get_labels(tree,label):
-    '''
-    Function to return the labels array out of a root tree.
-    This function is required because we use 2 sets of 2 lables each
-    where each set is combined with a logical "and".
-    For instance "fj_isQCD and sample_isQCD" is the final label to label a jet as
-    originating from QCD.
-    '''
-    prods = label.split('*')
-    facts = tree.arrays(prods,library='np')
-    labels = np.multiply(facts[prods[0]],facts[prods[1]])
-    return labels
+	'''
+	Function to return the labels array out of a root tree.
+	This function is required because we use 2 sets of 2 lables each
+	where each set is combined with a logical "and".
+	For instance "fj_isQCD and sample_isQCD" is the final label to label a jet as
+	originating from QCD.
+	'''
+	prods = label.split('*')
+	facts = tree.arrays(prods,library='np')
+	labels = np.multiply(facts[prods[0]],facts[prods[1]])
+	return labels
 
 def get_features(file_name):
-    '''
-    Function that extracts our chosen feature and label arrays from a root file
-    for the events that are labeled as QCD or Hbb and returns two 2D arrays.
-    The first array is the features array and has the shape (nummber_of_events, number_of_features).
-    The second array is the labels array ans has the shape (number_of_events, 2)
-    '''
-    with uproot.open(f"{file_name}:deepntuplizer/tree;42") as tree:
+	'''
+	Function that extracts our chosen feature and label arrays from a root file
+	for the events that are labeled as QCD or Hbb and returns two 2D arrays.
+	The first array is the features array and has the shape (nummber_of_events, number_of_features).
+	The second array is the labels array ans has the shape (number_of_events, 2)
+	'''
+	with uproot.open(f"{file_name}:deepntuplizer/tree;42") as tree:
 
-        feature_array = np.stack(list(tree.arrays(features,library='np').values()),axis=-1)
-        label_array = np.stack([get_labels(tree,i) for i in labels],axis=-1)
-        feature_array = feature_array[np.sum(label_array,axis=1)==1]
-        label_array = label_array[np.sum(label_array,axis=1)==1]
-        
-    return feature_array, label_array
+		feature_array = np.stack(list(tree.arrays(features,library='np').values()),axis=-1)
+		label_array = np.stack([get_labels(tree,i) for i in labels],axis=-1)
+		feature_array = feature_array[np.sum(label_array,axis=1)==1]
+		label_array = label_array[np.sum(label_array,axis=1)==1]
+
+	return feature_array, label_array
 
 
 def main():
