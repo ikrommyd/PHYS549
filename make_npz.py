@@ -57,7 +57,7 @@ def main():
     print(final_features.shape)
     print(final_labels.shape)
 
-    np.savez_compressed(f'root_files/{outfile}.npz', features = final_features, labels = final_labels)
+    np.savez(f'root_files/{outfile}.npz', features = final_features, labels = final_labels)
 
 if __name__ == '__main__':
 
