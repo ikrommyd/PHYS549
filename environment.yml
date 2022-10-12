@@ -2,6 +2,7 @@ name: phys549
 channels:
   - conda-forge
 dependencies:
+  - numpy
   - tensorflow
   - scikit-learn
   - uproot
