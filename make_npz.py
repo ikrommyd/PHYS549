@@ -25,7 +25,7 @@ def get_features(file_name):
     The first array is the features array and has the shape (nummber_of_events, number_of_features).
     The second array is the labels array ans has the shape (number_of_events, 2)
     '''
-    with uproot.open(f"{file_name}:deepntuplizer/tree;42") as tree:
+    with uproot.open(f"{file_name}:deepntuplizer/tree") as tree:
 
         feature_array = np.stack(list(tree.arrays(features,library='np').values()),axis=-1)
         label_array = np.stack([get_labels(tree,i) for i in labels],axis=-1)
@@ -62,7 +62,7 @@ def main():
 if __name__ == '__main__':
 
     # take the feature labels out of a root file
-    with uproot.open(f"root_files/ntuple_merged_0.root:deepntuplizer/tree;42") as tree:
+    with uproot.open(f"root_files/ntuple_merged_0.root:deepntuplizer/tree") as tree:
         features = ['fj_jetNTracks','fj_nSV']+[x for x in tree.keys() if x[:6]=='fj_tau' or x[:8]=='fj_track'] 
 
     # 2 labels: QCD or Hbb. Logical "and" of labels is used.
