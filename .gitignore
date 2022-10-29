@@ -4,3 +4,4 @@ root_files/*.npz
 .DS_Store
 textual.log
 __pycache__
+random_weights.h5
