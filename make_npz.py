@@ -5,6 +5,32 @@ import uproot
 import awkward as ak
 from tqdm import tqdm
 
+# define the features that we want to extract
+# with uproot.open(f"root_files/ntuple_merged_0.root:deepntuplizer/tree") as tree:
+#     features = ['fj_jetNTracks','fj_nSV']+[x for x in tree.keys() if x[:6]=='fj_tau' or x[:8]=='fj_track']
+
+features = ["fj_jetNTracks",
+            "fj_nSV",
+            "fj_eta",
+            "fj_mass",
+            "fj_phi",
+            "fj_pt",
+            "fj_ptDR",
+            "fj_relptdiff",
+            "fj_sdn2",
+            "fj_sdsj1_eta",
+            "fj_sdsj1_mass",
+            "fj_sdsj1_phi",    
+            "fj_sdsj1_pt",
+            "fj_sdsj1_ptD",
+            "fj_sdsj2_eta",
+            "fj_sdsj2_mass",
+            "fj_sdsj2_phi",
+            "fj_sdsj2_pt",
+            "fj_sdsj2_ptD",
+            "fj_z_ratio"]
+
+
 def get_labels(tree,label):
     '''
     Function to return the labels array out of a root tree.
@@ -57,13 +83,9 @@ def main():
     print(final_features.shape)
     print(final_labels.shape)
 
-    np.savez(f'root_files/{outfile}.npz', features = final_features, labels = final_labels)
+    np.savez(f'root_files/{outfile}.npz', features = final_features, labels = final_labels, names = features)
 
 if __name__ == '__main__':
-
-    # take the feature labels out of a root file
-    with uproot.open(f"root_files/ntuple_merged_0.root:deepntuplizer/tree") as tree:
-        features = ['fj_jetNTracks','fj_nSV']+[x for x in tree.keys() if x[:6]=='fj_tau' or x[:8]=='fj_track'] 
 
     # 2 labels: QCD or Hbb. Logical "and" of labels is used.
     labels = ['fj_isQCD*sample_isQCD',
