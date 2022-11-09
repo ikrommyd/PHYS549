@@ -12,4 +12,5 @@ dependencies:
   - seaborn
   - pandas
   - scipy
+  - notebook
   - tqdm

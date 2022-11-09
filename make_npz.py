@@ -1,7 +1,7 @@
 '''
-This script extracts desired features out of a range .root files from the "root_files" folder and saves them into a numpy npz file.
+This script extracts desired features out of a range of .root files from the "root_files" folder and saves them into a numpy npz file.
 The desired features must be defined in a list called "features" after the imports block.
-By default we have selected 49 features, the number of jets and tracks in an event, 18 kinematic varibles, and 19 shape variables.
+By default we have selected 49 features, the number of jets and tracks in an event, 18 kinematic variables, and 29 shape variables.
 
 Usage: python make_npz.py <starting root file number> <ending root file number> <desired npz file name>
 Example: python make_npz.py 0 8 myarrays
