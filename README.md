@@ -82,4 +82,4 @@ Now the notebook `explore.ipynb` can be used which will create a file called `tr
 Finally, after this final `.npz` file is created, the notebook `model.ipynb` can be run to train and test some models.
 So far we have implemented a Neural Network classifier, a Gradieng Boosting Trees classifier, and a Linear Discriminant Analysis classifier and all perform very well.
 
-The output plots after your runs can all be found with the `plots` folder which already contains some of our results.
+The output plots after your runs can all be found within the `plots` folder which already contains some of our results.
