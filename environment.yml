@@ -5,6 +5,7 @@ dependencies:
   - numpy
   - tensorflow
   - scikit-learn
+  - py-xgboost
   - uproot
   - awkward
   - matplotlib

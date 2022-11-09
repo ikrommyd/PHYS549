@@ -6,10 +6,7 @@ import awkward as ak
 from tqdm import tqdm
 
 # define the features that we want to extract
-# with uproot.open(f"root_files/ntuple_merged_0.root:deepntuplizer/tree") as tree:
-#     features = ['fj_jetNTracks','fj_nSV']+[x for x in tree.keys() if x[:6]=='fj_tau' or x[:8]=='fj_track']
-
-features = ["fj_jetNTracks",
+features1 = ["fj_jetNTracks",
             "fj_nSV",
             "fj_eta",
             "fj_mass",
@@ -29,6 +26,11 @@ features = ["fj_jetNTracks",
             "fj_sdsj2_pt",
             "fj_sdsj2_ptD",
             "fj_z_ratio"]
+
+with uproot.open(f"root_files/ntuple_merged_0.root:deepntuplizer/tree") as tree:
+    features2 = [x for x in tree.keys() if x[:6]=='fj_tau' or x[:8]=='fj_track']
+
+features = features1 + features2
 
 
 def get_labels(tree,label):
