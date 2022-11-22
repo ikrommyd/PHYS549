@@ -37,7 +37,7 @@ features1 = ["fj_jetNTracks",
             "fj_sdsj2_ptD",
             "fj_z_ratio"]
 
-with uproot.open(f"root_files/ntuple_merged_0.root:deepntuplizer/tree") as tree:
+with uproot.open(f"../root_files/ntuple_merged_0.root:deepntuplizer/tree") as tree:
     features2 = [x for x in tree.keys() if x[:6]=='fj_tau' or x[:8]=='fj_track']
 
 features = features1 + features2
@@ -86,7 +86,7 @@ def main():
     for i in tqdm(range(start, end)):
         file = f"ntuple_merged_{i}.root"
         try:
-            feature_array, label_array = get_features(f'root_files/{file}')
+            feature_array, label_array = get_features(f'../root_files/{file}')
             final_features = np.vstack((final_features, feature_array))
             final_labels = np.vstack((final_labels, label_array))    
         except FileNotFoundError:
@@ -95,7 +95,7 @@ def main():
     print(final_features.shape)
     print(final_labels.shape)
 
-    np.savez(f'root_files/{outfile}.npz', features = final_features, labels = final_labels, names = features)
+    np.savez(f'../root_files/{outfile}.npz', features = final_features, labels = final_labels, names = features)
 
 if __name__ == '__main__':
 
