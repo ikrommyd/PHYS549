@@ -50,8 +50,9 @@ These are the two files that the notebook uses by default but you can use any ot
 
 ## Exploration and Modeling
 
-We have implemented some data exploration and modeling so far in the `explore.ipynb` and `model.ipynb` notebooks respectively.\
-We note that the modeling will later be ported into `.py` scripts when it is finalized but we keep using notebooks for now since a lot of things change often and we want to be able to visualize things quickly.
+We have implemented some data exploration and modeling so far in the `explore.ipynb` and `train_models.ipynb` notebooks respectively.\
+The folder `scripts` contains some `.py` files that define a neural network model class, a plotting function and a data preprocessing script.
+These `.py` files are used by the notebooks for the modeling and for preprocessing before the notebooks are even able to run.
 
 To use these notebooks, some preprocessing must take place first.
 The script `make_npz.py` extracts desired features out of a range `.root` files from the `root_files` folder and saves them into a numpy `.npz` file.
@@ -61,16 +62,19 @@ By default we have selected 49 features, the number of jets and tracks in an eve
 
 Usage of this script:
 ```
+cd scripts
 python make_npz.py <starting root file number> <ending root file number> <desired npz file name>
 ```
 Example:
 ```
+cd scripts
 python make_npz.py 0 8 myarrays
 ```
 This will the the extract the desired features from the `.root` files from `ntuple_merged_0.root` to `ntuple_merged_8.root` in order and save them into `myarrays.npz` within the `root_files` folder.
 
 In our modeling we used all of the `.root` files and split them into 3 sets. After downloading all the files, this was done by:
 ```
+cd scripts
 python make_npz.py 0 8 combined_test
 python make_npz.py 9 80 combined_train
 python make_npz.py 81 90 combined_validate
