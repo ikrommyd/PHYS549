@@ -1,8 +1,9 @@
 import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
+from scipy import stats
 
-def make_ks_plot(y_train, train_proba, y_test, test_proba, bins=30, fig_sz=(10, 8)):
+def make_ks_plot(y_train, train_proba, y_test, test_proba, bins=30, fig_sz=(6.4*2,4.8*2)):
     '''
     OUTPUT: outputs KS test/train overtraining plots for classifier output
     INPUTS:
@@ -13,7 +14,7 @@ def make_ks_plot(y_train, train_proba, y_test, test_proba, bins=30, fig_sz=(10, 
         test_proba - np.ndarray of classifier output probabilities for the testing set.
                      Same shape as y_test. 0-1 probabilities from model.
         bins - Number of bins for viz. Default 30.
-        fig_sz - Figure size of the output matplotlib figure. Default (10,8).
+        fig_sz - Figure size of the output matplotlib figure. Default (12.8,9.6).
     '''
 
     train = pd.DataFrame(y_train, columns=["label"])
@@ -62,11 +63,13 @@ def make_ks_plot(y_train, train_proba, y_test, test_proba, bins=30, fig_sz=(10, 
     # get the KS score
     ks = stats.ks_2samp(decisions[0], decisions[2])
 
-    plt.xlabel("Classifier Output", fontsize=12)
-    plt.ylabel("Arbitrary Normalized Units", fontsize=12)
+    plt.xlabel("Classifier Output")
+    plt.ylabel("Arbitrary Normalized Units")
 
     plt.xlim(0, 1)
     plt.plot([], [], ' ', label='KS Statistic (p-value): '+str(round(ks[0],3))+' ('+str(round(ks[1],3))+')')
-    plt.legend(loc='upper center', fontsize=12)
+    plt.legend(loc='upper center')
     plt.tight_layout()
     plt.close()
+
+    return fig

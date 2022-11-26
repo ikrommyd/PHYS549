@@ -8,7 +8,7 @@ from matplotlib import pyplot as plt
 
 class MLP:
 
-    def __init__(self, num_of_layers, dim_of_layers, activation_of_layers, normalize_batch, num_of_features):
+    def __init__(self, num_of_features, num_of_layers = 2, dim_of_layers = (60,60), activation_of_layers = ('relu','relu'), normalize_batch = True):
 
         if num_of_features != len(dim_of_layers) != len(activation_of_layers):
             print("Number of layers must have the size as the activation function's list")
@@ -64,7 +64,6 @@ class MLP:
         except AttributeError:
             lr = 1.0
             
-        self.keras_model.load_weights('keras_model_best.h5')
         early_stopping = EarlyStopping(monitor='val_loss', patience=10)
         model_checkpoint = ModelCheckpoint('keras_model_best.h5', monitor='val_loss', save_best_only=True)
         callbacks = [early_stopping, model_checkpoint]
@@ -75,11 +74,18 @@ class MLP:
         history = self.keras_model.fit(X_train, y_train, batch_size=batch_size, 
                                        epochs=100, shuffle=False, callbacks = callbacks, 
                                        validation_data=(X_test,y_test))
+
+        self.keras_model.load_weights('keras_model_best.h5')
         
     def evaluate(self, X_train, y_train, X_test, y_test):
+
+        evaluation_train = self.keras_model.evaluate(X_train,y_train)
+        evaluation_test = self.keras_model.evaluate(X_test,y_test)
+
+        print(evaluation_train)
+        print(evaluation_test)
         
-        print(self.keras_model.evaluate(X_train,y_train))
-        print(self.keras_model.evaluate(X_test,y_test))
+        return evaluation_train, evaluation_test
     
     def predict(self, X_train, X_test):
         
