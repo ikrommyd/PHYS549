@@ -5,3 +5,8 @@ root_files/*.npz
 textual.log
 __pycache__
 random_weights.h5
+*.txt
+misc.ipynb
+model.ipynb
+plotting.ipynb
+scripts/__pycache__

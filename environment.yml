@@ -5,10 +5,12 @@ dependencies:
   - numpy
   - tensorflow
   - scikit-learn
+  - py-xgboost
   - uproot
   - awkward
   - matplotlib
   - seaborn
   - pandas
   - scipy
+  - notebook
   - tqdm

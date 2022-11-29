@@ -1,9 +1,47 @@
+'''
+This script extracts desired features out of a range of .root files from the "root_files" folder and saves them into a numpy npz file.
+The desired features must be defined in a list called "features" after the imports block.
+By default we have selected 49 features, the number of jets and tracks in an event, 18 kinematic variables, and 29 shape variables.
+
+Usage: python make_npz.py <starting root file number> <ending root file number> <desired npz file name>
+Example: python make_npz.py 0 8 myarrays
+This will the the extract the desired features from the root files "ntuple_merged_0.root" to "ntuple_merged_8.root" in order and save them into myarrays.npz
+'''
+
 import os
 import sys
 import numpy as np
 import uproot
 import awkward as ak
 from tqdm import tqdm
+
+# define the features that we want to extract
+features1 = ["fj_jetNTracks",
+            "fj_nSV",
+            "fj_eta",
+            "fj_mass",
+            "fj_phi",
+            "fj_pt",
+            "fj_ptDR",
+            "fj_relptdiff",
+            "fj_sdn2",
+            "fj_sdsj1_eta",
+            "fj_sdsj1_mass",
+            "fj_sdsj1_phi",    
+            "fj_sdsj1_pt",
+            "fj_sdsj1_ptD",
+            "fj_sdsj2_eta",
+            "fj_sdsj2_mass",
+            "fj_sdsj2_phi",
+            "fj_sdsj2_pt",
+            "fj_sdsj2_ptD",
+            "fj_z_ratio"]
+
+with uproot.open(f"../root_files/ntuple_merged_0.root:deepntuplizer/tree") as tree:
+    features2 = [x for x in tree.keys() if x[:6]=='fj_tau' or x[:8]=='fj_track']
+
+features = features1 + features2
+
 
 def get_labels(tree,label):
     '''
@@ -48,7 +86,7 @@ def main():
     for i in tqdm(range(start, end)):
         file = f"ntuple_merged_{i}.root"
         try:
-            feature_array, label_array = get_features(f'root_files/{file}')
+            feature_array, label_array = get_features(f'../root_files/{file}')
             final_features = np.vstack((final_features, feature_array))
             final_labels = np.vstack((final_labels, label_array))    
         except FileNotFoundError:
@@ -57,13 +95,9 @@ def main():
     print(final_features.shape)
     print(final_labels.shape)
 
-    np.savez(f'root_files/{outfile}.npz', features = final_features, labels = final_labels)
+    np.savez(f'../root_files/{outfile}.npz', features = final_features, labels = final_labels, names = features)
 
 if __name__ == '__main__':
-
-    # take the feature labels out of a root file
-    with uproot.open(f"root_files/ntuple_merged_0.root:deepntuplizer/tree") as tree:
-        features = ['fj_jetNTracks','fj_nSV']+[x for x in tree.keys() if x[:6]=='fj_tau' or x[:8]=='fj_track'] 
 
     # 2 labels: QCD or Hbb. Logical "and" of labels is used.
     labels = ['fj_isQCD*sample_isQCD',
