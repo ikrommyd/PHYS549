@@ -5,8 +5,10 @@ root_files/*.npz
 textual.log
 __pycache__
 random_weights.h5
+keras_model_best.h5
 *.txt
 misc.ipynb
 model.ipynb
 plotting.ipynb
+preprocess_testing.ipynb
 scripts/__pycache__
