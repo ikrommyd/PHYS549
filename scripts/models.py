@@ -66,8 +66,9 @@ class MLP:
             
         early_stopping = EarlyStopping(monitor='val_loss', patience=10)
         model_checkpoint = ModelCheckpoint('keras_model_best.h5', monitor='val_loss', save_best_only=True)
-        callbacks = [early_stopping, model_checkpoint]
-        
+        # callbacks = [early_stopping, model_checkpoint]
+        callbacks = [model_checkpoint]
+
         self.keras_model.load_weights('random_weights.h5')
         opt = keras.optimizers.SGD(learning_rate=lr)
         self.keras_model.compile(optimizer=opt, loss='categorical_crossentropy', metrics=['accuracy'])
@@ -76,6 +77,8 @@ class MLP:
                                        validation_data=(X_test,y_test))
 
         self.keras_model.load_weights('keras_model_best.h5')
+
+        return history
         
     def evaluate(self, X_train, y_train, X_test, y_test):
 
