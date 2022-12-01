@@ -78,7 +78,7 @@ def get_final_arrays(feature_array, label_array):
     
     signals = feature_array[label_array[:,1]==1]
     backgrounds = feature_array[label_array[:,0]==1]
-    sample_idx = np.random.choice(np.arange(len(backgrounds)),size=len(signals), replace=False)
+    sample_idx = np.random.choice(np.arange(len(backgrounds)), size=len(signals), replace=False)
     backgrounds = backgrounds[sample_idx]
     hbb = np.concatenate((np.ones(len(signals)),np.zeros(len(backgrounds))), axis=None)
     QCD = np.concatenate((np.zeros(len(signals)),np.ones(len(backgrounds))), axis=None)
