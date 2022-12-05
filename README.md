@@ -75,9 +75,9 @@ This will the the extract the desired features from the `.root` files from `ntup
 In our modeling we used all of the `.root` files and split them into 3 sets. After downloading all the files, this was done by:
 ```
 cd scripts
-python make_npz.py 0 8 combined_test
-python make_npz.py 9 80 combined_train
-python make_npz.py 81 90 combined_validate
+python make_npz.py 0 19 combined_validate
+python make_npz.py 20 80 combined_train
+python make_npz.py 81 90 combined_test
 ```
 which will create 3 `.npz` files for training, testing and validation purposes using all 91 `.root` files.
 

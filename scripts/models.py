@@ -41,7 +41,7 @@ class MLP:
             opt = keras.optimizers.SGD(learning_rate=lr)
             self.keras_model.compile(optimizer=opt, loss='categorical_crossentropy', metrics=['accuracy'])
             history = self.keras_model.fit(X_train, y_train, batch_size=batch_size, epochs=10,
-                                      shuffle=False, verbose=verbosity)
+                                           verbose=verbosity)
             losses.append(history.history['loss'][-1])
         
         self.optimal_lr = rates[np.nanargmin(losses)]
@@ -57,12 +57,7 @@ class MLP:
         
         print(f"The optimal learning rate is {self.optimal_lr}")
         
-    def train(self, X_train, y_train, X_test, y_test, batch_size = 2**16):
-        
-        try:
-            lr = self.optimal_lr
-        except AttributeError:
-            lr = 1.0
+    def train(self, X_train, y_train, X_test, y_test, learning_rate = 0.01,  epochs = 200, batch_size = 2**16):
             
         early_stopping = EarlyStopping(monitor='val_loss', patience=10)
         model_checkpoint = ModelCheckpoint('keras_model_best.h5', monitor='val_loss', save_best_only=True)
@@ -70,29 +65,29 @@ class MLP:
         callbacks = [model_checkpoint]
 
         self.keras_model.load_weights('random_weights.h5')
-        opt = keras.optimizers.SGD(learning_rate=lr)
+        opt = keras.optimizers.SGD(learning_rate=learning_rate)
         self.keras_model.compile(optimizer=opt, loss='categorical_crossentropy', metrics=['accuracy'])
         history = self.keras_model.fit(X_train, y_train, batch_size=batch_size, 
-                                       epochs=100, shuffle=False, callbacks = callbacks, 
+                                       epochs=epochs, callbacks = callbacks, 
                                        validation_data=(X_test,y_test))
 
         self.keras_model.load_weights('keras_model_best.h5')
 
         return history
         
-    def evaluate(self, X_train, y_train, X_test, y_test):
+    def evaluate(self, X_train, y_train, X_test, y_test, batch_size = None):
 
-        evaluation_train = self.keras_model.evaluate(X_train,y_train)
-        evaluation_test = self.keras_model.evaluate(X_test,y_test)
+        evaluation_train = self.keras_model.evaluate(X_train,y_train, batch_size=batch_size)
+        evaluation_test = self.keras_model.evaluate(X_test,y_test, batch_size=batch_size)
 
         print(evaluation_train)
         print(evaluation_test)
         
         return evaluation_train, evaluation_test
     
-    def predict(self, X_train, X_test):
+    def predict(self, X_train, X_test, batch_size = None):
         
-        predict_array_train = self.keras_model.predict(X_train)
-        predict_array_test = self.keras_model.predict(X_test)
+        predict_array_train = self.keras_model.predict(X_train, batch_size=batch_size)
+        predict_array_test = self.keras_model.predict(X_test, batch_size=batch_size)
         
         return predict_array_train, predict_array_test
