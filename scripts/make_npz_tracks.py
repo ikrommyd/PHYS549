@@ -1,3 +1,12 @@
+'''
+This script extracts the features of the tracks of jet events out of a range of .root files from the "root_files" folder and saves them into a numpy npz file.
+These features are  predefined in a list called "features" after the imports block.
+
+Usage: python make_npz_tracks.py <starting root file number> <ending root file number> <desired npz file name>
+Example: python make_npz_tracks.py 0 8 myarrays
+This will the the extract the track features from the root files "ntuple_merged_0.root" to "ntuple_merged_8.root" in order and save them into myarrays.npz
+'''
+
 import os
 import sys
 import numpy as np

@@ -10,7 +10,7 @@ keras_model_best.h5
 misc.ipynb
 model.ipynb
 plotting.ipynb
-preprocess_testing.ipynb
 visualize_network.ipynb
 tracks.ipynb
+train_basic.ipynb
 scripts/__pycache__
