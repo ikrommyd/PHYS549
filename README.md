@@ -86,9 +86,9 @@ This script will extract 28 variables from the 10 tracks of each jet event with 
 If there are less than 10 tracks, zeros will be filled.
 ````
 cd scripts
-python make_npz_tracks.py 0 19 combined_validate
-python make_npz_tracks.py 20 80 combined_train
-python make_npz_tracks.py 81 90 combined_test
+python make_npz_tracks.py 0 19 combined_tracks_validate
+python make_npz_tracks.py 20 80 combined_tracks_train
+python make_npz_tracks.py 81 90 combined_tracks_test
 ````
 After this preprocessing, the notebooks `train_models_tracks.ipynb` and `test_models_tracks.ipynb` can be run in order.
 These will train a multilayer perceptron using those track variables and then test it on unexplored data.
