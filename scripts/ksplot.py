@@ -37,12 +37,12 @@ def make_ks_plot(y_train, train_proba, y_test, test_proba, bins=30, fig_sz=(6.4*
     train_pos = plt.hist(decisions[0],
          color='b', alpha=0.5, range=low_high, bins=bins,
          histtype='stepfilled', density=True,
-         label='Signal (test)')
+         label='Signal (train)')
 
     train_neg = plt.hist(decisions[1],
          color='r', alpha=0.5, range=low_high, bins=bins,
          histtype='stepfilled', density=True,
-         label='Background (test)')
+         label='Background (train)')
 
     hist, bins = np.histogram(decisions[2],
                           bins=bins, range=low_high, density=True)
@@ -51,7 +51,7 @@ def make_ks_plot(y_train, train_proba, y_test, test_proba, bins=30, fig_sz=(6.4*
 
     width = (bins[1] - bins[0])
     center = (bins[:-1] + bins[1:]) / 2
-    test_pos = plt.errorbar(center, hist, yerr=err, fmt='o', c='b', label='Signal (train)')
+    test_pos = plt.errorbar(center, hist, yerr=err, fmt='o', c='b', label='Signal (test)')
 
     hist, bins = np.histogram(decisions[3],
                           bins=bins, range=low_high, density=True)
