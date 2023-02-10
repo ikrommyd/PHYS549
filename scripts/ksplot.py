@@ -58,7 +58,7 @@ def make_ks_plot(y_train, train_proba, y_test, test_proba, bins=30, fig_sz=(6.4*
     scale = len(decisions[2]) / sum(hist)
     err = np.sqrt(hist * scale) / scale
 
-    test_neg = plt.errorbar(center, hist, yerr=err, fmt='o', c='r', label='Background (train)')
+    test_neg = plt.errorbar(center, hist, yerr=err, fmt='o', c='r', label='Background (test)')
 
     # get the KS score
     ks = stats.ks_2samp(decisions[0], decisions[2])
